@@ -1,17 +1,173 @@
+body{
+	background-color: gainsboro;
+}
+
+.box{
+	font-family: sans-serif;
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+	flex-wrap: wrap;
+}
+
+
 .product-item {
-	background-color: gray;
-	display: inline-block;
-	height: 25px;
+	background-color: white;
 	padding: 5px;
+	border-radius: 7px;
+	flex: 2;
+	margin-right: 20px;
+}
+
+.left{
+	font-size: 25px;
+	padding: 10px;
+}
+
+.bought{
+	font-size: 25px;
+	padding: 10px;
+}
+.amount {
+	padding: 5px;
+	background-color: white;
+	border-radius: 7px;
+	flex: 1;
+	margin-left: 20px;
+}
+
+.amount hr {
+	border: none;
+	border-top: 2px solid gainsboro;
+	margin-top: 10px;
+
+}
+.product-item hr{
+	border: none;
+	border-top: 2px solid gainsboro;
+}
+
+.cookies{
+	background-color: gainsboro;
+	display: inline-block;
+	border-radius: 5px;
+	padding: 10px;
+	font-size: 15px;
+	margin-left: 15px;
+	margin-top: 15px;
+}
+.cookiesamount{
+	display: inline-block;
+	background-color: orange;
+	color: white;
+	border-radius: 50%;
+	height: 18px;
+	width: 18px;
+	padding: 7px;
+	text-align: center;
+
+}
+
+.cheese{
+	background-color: gainsboro;
+	display: inline-block;
+	border-radius: 5px;
+	padding: 10px;
+	font-size: 15px;
+}
+.cheeseamount{
+	display: inline-block;
+	background-color: orange;
+	color: white;
+	border-radius: 50%;
+	height: 18px;
+	width: 18px;
+	padding: 7px;
+	text-align: center;
+}
+.tomatoes{
+	background-color: gainsboro;
+	display: inline-block;
+	border-radius: 5px;
+	padding: 10px;
+	font-size: 15px;
+	margin-left: 15px;
+	margin-top: 15px;
+}
+.tomatoesamount{
+	background-color: orange;
+	display: inline-block;
+	color: white;
+	border-radius: 50%;
+	height: 18px;
+	width: 18px;
+	padding: 7px;
+	text-align: center;
+}
+.line{
+	margin-top: 20px;
+}
+.rectangle{
+	display: flex;
+	padding: 10px;
+}
+
+.styled-input{
+	padding: 10px;
+	font-size: 16px;
+	width: 500px;
+	border: 1px solid gainsboro;
+	border-radius: 5px;
+	outline: none;
+}
+
+.blue-button{
+	background-color: cornflowerblue;
+	width: 150px;
+	height: 40px;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+table{
+	border-collapse: collapse;
+	width: 100%;
+}
+
+.table-tomatoes{
+	display: inline-block;
+	background-color: gainsboro;
+	padding: 10px;
 	border-radius: 5px;
 }
 
-.amount {
-	background-color: yellow;
-	border-radius: 10px;
-	
-	display: inline-block;
-	height: 20px;
-	width: 20px;
+
+
+.tomatoes-sold {
+	width: 150px;
+	background-color: gainsboro;
+	padding: 10px;
+	border-radius: 5px;
 	text-align: center;
 }
+
+td{
+	border-bottom: 2px solid gainsboro;
+	padding: 15px;
+}
+
+.second-row--{
+	display: inline-block;
+	background-color: red;
+	color: white;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	text-align: center;
+}
+
+
+
+
+
