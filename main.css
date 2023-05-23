@@ -107,6 +107,9 @@ body{
 .line{
 	margin-top: 20px;
 }
+.right-aligned {
+	text-align: right;
+}
 .rectangle{
 	display: flex;
 	padding: 10px;
