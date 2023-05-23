@@ -2,87 +2,114 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="author" content="Yelyzaveta Tretiak">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Yelyzaveta Tretiak">
     <title>My Page</title>
-    <link rel="stylesheet" type="text/css" href="main.css" />
+    <link rel="stylesheet" type="text/css" href="main.css"/>
 </head>
 <body>
-	<div class="box">
-		<div class="product-item">
-			<div class="rectangle">
-				<label>
-					<input type="text" class="styled-input" placeholder="Назва товару">
-				</label>
+<div class="box">
+    <div class="product-item">
+        <div class="rectangle">
+            <label>
+                <input type="text" class="styled-input" placeholder="Назва товару">
+            </label>
 
-				<div class="button">
-				<button class="blue-button"><b>Додати</b></button>
-			</div>
-			</div>
-			<hr>
+            <div class="button">
+                <button class="blue-button"><b>Додати</b></button>
+            </div>
+        </div>
+        <hr>
 
-			<table class="table">
-				<tr>
-					<td><div><del>Помідори</del></div></td>
+        <table class="table">
+            <tr>
+                <td>
+                    <div>
+                        <del>Помідори</del>
+                    </div>
+                </td>
 
-					<td class="centered"><div class="table-amount">2</div></td>
-					<td class="right-aligned"><div class="text-sold">Не куплено</div></td>
-				</tr>
-				<tr>
-					<td>Печиво</td>
-					<td class="centered"><button class="red-button"></button>
-						<div class="table-amount">2</div>
-						<button class="green-button"></button>
-					</td>
-					<td class="right-aligned"><div class="cookies-sold">
-						<div class="text-sold">Куплено</div>
-						<button class="cross"></button>
-					</div></td>
-				</tr>
+                <td class="centered">
+                    <div class="table-amount">2</div>
+                </td>
+                <td class="right-aligned">
+                    <div class="text-sold">Не куплено</div>
+                </td>
+            </tr>
+            <tr>
+                <td>Печиво</td>
+                <td class="centered">
+                    <button class="red-button"></button>
+                    <div class="table-amount">2</div>
+                    <button class="green-button"></button>
+                </td>
+                <td class="right-aligned">
+                    <div class="cookies-sold">
+                        <div class="text-sold">Куплено</div>
+                        <button class="cross"></button>
+                    </div>
+                </td>
+            </tr>
 
-				<tr>
-					<td>Сир</td>
-					<td class="centered"><div class="cheese-2col"><button class="red-button"></button>
-						<div class="table-cookies">1</div>
-						<button class="green-button"></button>
-					</div>
-					</td>
-					<td class="right-aligned"><div class="cheese-sold">
-						<div class="text-sold">Куплено</div>
-						<button class="cross"></button>
-					</div></td>
-				</tr>
-			</table>
+            <tr>
+                <td>Сир</td>
+                <td class="centered">
+                    <div class="cheese-2col">
+                        <button class="red-button"></button>
+                        <div class="table-cookies">1</div>
+                        <button class="green-button"></button>
+                    </div>
+                </td>
+                <td class="right-aligned">
+                    <div class="cheese-sold">
+                        <div class="text-sold">Куплено</div>
+                        <button class="cross"></button>
+                    </div>
+                </td>
+            </tr>
+        </table>
 
 
+    </div>
+    <div class="amount-page">
+        <div class="left"><b>Залишилося</b></div>
+        <hr>
+        <div class="tags-line">
+            <div class="tag">
+                <div><b>Печиво</b>
+                    <div class="amount"><b>2</b></div>
+                </div>
 
-		</div>
-		<div class="amount-page">
-			<div class="left"><b>Залишилося</b></div>
-			<hr>
-			<div class="tags-line">
-				<div class="tag">
-					<div><b>Печиво</b>
-						<div class="amount"><b>2</b></div>
-					</div>
+            </div>
+            <div class="tag"><b>Сир</b>
+                <div class="amount"><b>1</b></div>
+            </div>
+        </div>
 
-				</div>
-				<div class="tag"><b>Сир</b>
-					<div class="amount"><b>1</b></div>
-				</div>
-			</div>
+        <div class="line">
+            <hr>
+        </div>
+        <div class="bought"><b>Куплено</b></div>
+        <hr>
+        <div class="tags-line">
+            <div class="tag"><b>
+                <del>Помідори</del>
+            </b>
+                <div class="amount"><b>
+                    <del>2</del>
+                </b></div>
+            </div>
+        </div>
 
-			<div class="line"><hr></div>
-			<div class="bought"><b>Куплено</b></div>
-			<hr>
-			<div class="tags-line">
-				<div class="tag"><b><del>Помідори</del></b>
-					<div class="amount"><b><del>2</del></b></div>
-				</div>
-			</div>
+    </div>
 
-		</div>
-
-	</div>
+</div>
+<div>
+    <section class="badge">
+        <p class="text-badge">Buy List</p>
+        <p>Created by</p>
+        <p>Yelyzaveta Tretiak</p>
+    </section>
+</div>
 </body>
 </html>
