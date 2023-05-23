@@ -9,52 +9,79 @@
 </head>
 <body>
 	<div class="box">
-		<div class="product-item">
+		<div class="product-item page-column">
 			<div class="rectangle">
-				<input type="text" class="styled-input" placeholder="Назва товару">
+				<label>
+					<input type="text" class="styled-input" placeholder="Назва товару">
+				</label>
 
-			<div class="button">
+				<div class="button">
 				<button class="blue-button"><b>Додати</b></button>
 			</div>
 			</div>
 			<hr>
 
-			<table>
+			<table class="table">
 				<tr>
 					<td><div><del>Помідори</del></div></td>
-					<td><div class="table-tomatoes">2</div></td>
-					<td><div class="tomatoes-sold"><b>Не куплено</b></div></td>
+
+					<td class="centered"><div class="table-tomatoes">2</div></td>
+					<td class="right-aligned"><div class="text-sold">Не куплено</div></td>
 				</tr>
 				<tr>
 					<td>Печиво</td>
-					<td><div class="general-2-2"><div class="second-row--"><b>-</b></div>
-						<div class="table-tomatoes">2</div>
+					<td class="centered"><button class="red-button"></button>
+						<div class="table-cookies">
+							2</div>
+						<button class="green-button"></button>
+					</td>
+					<td class="right-aligned"><div class="cookies-sold">
+						<div class="text-sold">Куплено</div>
+						<button class="cross"></button>
 					</div></td>
 				</tr>
 
+				<tr>
+					<td>Сир</td>
+					<td class="centered"><div class="cheese-2col"><button class="red-button"></button>
+						<div class="table-cookies">1</div>
+						<button class="green-button"></button>
+					</div>
+					</td>
+					<td class="right-aligned"><div class="cheese-sold">
+						<div class="text-sold">Куплено</div>
+						<button class="cross"></button>
+					</div></td>
+				</tr>
 			</table>
 
 
 
 		</div>
-		<div class="amount">
+		<div class="amount page-column">
 			<div class="left"><b>Залишилося</b></div>
 			<hr>
-			<div class="cookies">
-				<div class="cookiesname"><b>Печиво</b>
-					<div class="cookiesamount"><b>2</b></div>
-				</div>
+			<div class="tags-line">
+				<div class="tag">
+					<div><b>Печиво</b>
+						<div class="amount"><b>2</b></div>
+					</div>
 
+				</div>
+				<div class="tag"><b>Сир</b>
+					<div class="amount"><b>1</b></div>
+				</div>
 			</div>
-			<div class="cheese"><b>Сир</b>
-				<div class="cheeseamount"><b>1</b></div>
-			</div>
+
 			<div class="line"><hr></div>
 			<div class="bought"><b>Куплено</b></div>
 			<hr>
-			<div class="tomatoes"><b><del>Помідори</del></b>
-				<div class="tomatoesamount"><b><del>2</del></b></div>
+			<div class="tags-line">
+				<div class="tag"><b><del>Помідори</del></b>
+					<div class="amount"><b><del>2</del></b></div>
+				</div>
 			</div>
+
 		</div>
 
 	</div>
