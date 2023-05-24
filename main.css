@@ -21,6 +21,7 @@
     width: 18px;
     padding: 7px;
     text-align: center;
+    font-weight: bold;
 }
 
 .badge {
@@ -56,6 +57,7 @@
 .bought {
     font-size: 25px;
     padding: 10px;
+    font-weight: bold;
 }
 
 .box {
@@ -63,6 +65,21 @@
     display: flex;
     padding: 10px;
     flex-wrap: wrap;
+}
+
+.button-text-sold::before {
+    content: "Куплено";
+}
+
+.button-text-sold {
+    background-color: gainsboro;
+    border-radius: 5px;
+    text-align: center;
+    color: black;
+    font-weight: bold;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
 }
 
 .centered {
@@ -114,6 +131,7 @@
     border-radius: 50%;
     width: 40px;
     height: 40px;
+    position: relative;
     justify-content: center;
     align-items: center;
     color: white;
@@ -122,6 +140,31 @@
     border: none;
     cursor: pointer;
 }
+
+.green-button::after {
+    content: attr(data-tooltip);
+    visibility: hidden;
+    background-color: darkorchid;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: calc(100% - 80px);
+    left: -50%;
+    transform: translateY(20%);
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0s, transform 2.5s ease;
+
+}
+
+
+.green-button:hover::after {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0) translateY(-60%);
+    transition-delay: 0s;
+}
+
 
 .left {
     font-size: 25px;
@@ -158,6 +201,7 @@
     background-color: red;
     border-radius: 50%;
     width: 40px;
+    position: relative;
     height: 40px;
     justify-content: center;
     align-items: center;
@@ -166,25 +210,35 @@
     font-size: 18px;
     border: none;
     cursor: pointer;
+
 }
+
 
 .red-button::after {
     content: attr(data-tooltip);
     visibility: hidden;
     background-color: darkorchid;
     color: white;
-    padding: 5px;
-    border-radius: 5px;
+    padding: 10px;
+    border-radius: 10px;
     position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
+    top: calc(100% - 80px);
+    left: -50%;
+    transform: translateY(20%);
     opacity: 0;
-    transition: top 1.5s ease;
+    transition: opacity 0.3s, visibility 0s, transform 2.5s ease;
+
 }
+
 
 .red-button:hover::after {
     visibility: visible;
+    opacity: 1;
+    transform: translateX(0) translateY(-60%);
+    transition-delay: 0s;
+
+
+
 }
 
 
@@ -235,7 +289,6 @@
 }
 
 
-
 .text-sold {
     background-color: gainsboro;
     display: inline-block;
@@ -266,24 +319,25 @@
     .product-item, .amount-page {
         width: 100%;
     }
+
     .amount-page {
         margin-top: 50px;
     }
 }
 
 @media print {
-   .text-badge {
-       display: none;
-   }
+    .text-badge {
+        display: none;
+    }
+
     .badge {
         top: 87%;
-        display: block;
         background-color: white;
         border: 2px solid darkorchid;
         padding: 5px;
-        font-family: sans-serif;
 
     }
+
     .text-for-print {
         color: black;
     }
