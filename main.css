@@ -168,11 +168,28 @@
     cursor: pointer;
 }
 
-.right-aligned {
-    text-align: right;
+.red-button::after {
+    content: attr(data-tooltip);
+    visibility: hidden;
+    background-color: darkorchid;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: top 1.5s ease;
 }
 
-.right {
+.red-button:hover::after {
+    visibility: visible;
+}
+
+
+.right-aligned {
+    text-align: right;
 }
 
 .styled-input {
@@ -254,6 +271,25 @@
     }
 }
 
+@media print {
+   .text-badge {
+       display: none;
+   }
+    .badge {
+        top: 87%;
+        display: block;
+        background-color: white;
+        border: 2px solid darkorchid;
+        padding: 5px;
+        font-family: sans-serif;
+
+    }
+    .text-for-print {
+        color: black;
+    }
+
+}
+
 body {
     background-color: gainsboro;
 }
@@ -267,4 +303,6 @@ td {
     border-bottom: 2px solid gainsboro;
     padding: 10px;
 }
+
+
 
