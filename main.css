@@ -74,10 +74,36 @@
     border-radius: 5px;
     text-align: center;
     color: black;
+    position: relative;
     font-weight: bold;
     font-size: 14px;
+    justify-content: center;
     border: none;
     cursor: pointer;
+}
+
+.button-text-sold::after {
+    content: attr(data-tooltip);
+    visibility: hidden;
+    background-color: darkorchid;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: normal;
+    position: absolute;
+    top: calc(100% - 50px);
+    left: 0;
+    transform: translateY(20%);
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0s, transform 2.5s ease;
+}
+
+.button-text-sold:hover::after {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(0) translateY(-60%);
+    transition-delay: 0s;
 }
 
 .centered {
