@@ -65,10 +65,6 @@
     flex-wrap: wrap;
 }
 
-.button-text-sold::before {
-    content: "Куплено";
-}
-
 .button-text-sold {
     background-color: gainsboro;
     border-radius: 5px;
@@ -80,6 +76,11 @@
     justify-content: center;
     border: none;
     cursor: pointer;
+    transition: 1.5s;
+}
+
+.button-text-sold::before {
+    content: "Куплено";
 }
 
 .button-text-sold::after {
@@ -92,17 +93,24 @@
     font-size: 13px;
     font-weight: normal;
     position: absolute;
-    top: calc(100% - 50px);
-    left: 0;
-    transform: translateY(20%);
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(100%) scale(0);
     opacity: 0;
-    transition: opacity 0.3s, visibility 0s, transform 2.5s ease;
+    transition: opacity 0.3s, transform 0.9s ease;
 }
 
 .button-text-sold:hover::after {
     visibility: visible;
     opacity: 1;
-    transform: translateX(0) translateY(-60%);
+    transform: translateX(-50%) translateY(-20%) scale(1);
+    transition-delay: 0.3s;
+}
+
+.button-text-sold:not(:hover)::after {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(-50%) translateY(100%) scale(0);
     transition-delay: 0s;
 }
 
@@ -363,7 +371,10 @@
 }
 
 
-@media (max-width: 500px) {
+@media (max-width: 1000px) {
+    body {
+        max-width: 1000px;
+    }
     .box {
         flex-direction: column;
         align-items: start;
@@ -371,10 +382,18 @@
 
     .product-item, .amount-page {
         width: 100%;
+        display: block;
+        left: 0;
+        margin-top: 20px;
+        margin-left: 0;
+        padding-left: 0;
     }
 
     .amount-page {
+        width: 100%;
+        display: block;
         margin-top: 50px;
+        position: relative;
     }
 }
 
