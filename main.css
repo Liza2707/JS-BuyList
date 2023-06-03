@@ -49,9 +49,12 @@
     height: 40px;
     color: white;
     border: none;
+    position: relative;
     border-radius: 5px;
     cursor: pointer;
 }
+
+
 
 .bought {
     font-size: 25px;
