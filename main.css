@@ -110,6 +110,48 @@
     transition-delay: 0.3s;
 }
 
+.button-not-sold {
+    background-color: gainsboro;
+    border-radius: 5px;
+    text-align: center;
+    color: black;
+    position: relative;
+    font-weight: bold;
+    font-size: 14px;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: 1.5s;
+}
+
+.button-not-sold::before {
+    content: "Не куплено";
+}
+
+.button-not-sold::after {
+    content: attr(data-tooltip);
+    visibility: hidden;
+    background-color: darkorchid;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: normal;
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(100%) scale(0);
+    opacity: 0;
+    transition: opacity 0.9s, transform 1s ease, visibility 0.3s;
+}
+
+.button-not-sold:hover::after {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%) translateY(-20%) scale(1);
+    transition-delay: 0.3s;
+}
+
 .centered {
     text-align: center;
 }
@@ -344,6 +386,7 @@
     border-radius: 5px;
     font-weight: bold;
     text-align: right;
+    cursor: pointer;
 }
 
 .tomatoes {
