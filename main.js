@@ -15,8 +15,9 @@ button.addEventListener('keypress', function (evt) {
 })
 
 
-addItem('coca-cola');
+addItem('Сік');
 addItem('Мафін');
+addItem('Вівсянка')
 
 function addItem(productName) {
 
