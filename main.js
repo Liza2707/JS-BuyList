@@ -27,6 +27,7 @@ function addItem(productName) {
     productNameCell.setAttribute('contenteditable', 'true')
     let amountCell = document.createElement('td');
     let soldCell = document.createElement('td');
+    soldCell.classList.add('right-aligned')
 
     productNameCell.textContent = productName;
 
@@ -71,6 +72,7 @@ function addItem(productName) {
 
     let buttonNotSold = document.createElement('button');
     buttonNotSold.classList.add('button-text-sold');
+    buttonNotSold.classList.add('text-sold')
     buttonNotSold.setAttribute('data-tooltip', 'Куплено');
     soldCell.appendChild(buttonNotSold);
 
@@ -95,6 +97,7 @@ function addItem(productName) {
         buttonSold.setAttribute('data-tooltip', 'Не куплено')
         soldCell.appendChild(buttonSold)
         productNameCell.style.textDecoration = 'line-through'
+        productNameCell.setAttribute('contenteditable', false)
     })
 
     let buttonCross = document.createElement('button');
