@@ -11,12 +11,11 @@
 <div class="box">
     <div class="product-item">
         <div class="rectangle">
-            <label>
-                <input type="text" class="styled-input" placeholder="Назва товару">
-            </label>
+
+                <input type="text" class="styled-input" id="input-text" placeholder="Назва товару">
 
             <div class="button">
-                <button class="blue-button"><b>Додати</b></button>
+                <button class="blue-button" id="button-to-add" data-tooltip="Додати"><b>Додати</b></button>
             </div>
         </div>
         <hr>
@@ -33,11 +32,13 @@
                     <div class="table-amount">2</div>
                 </td>
                 <td class="right-aligned">
-                    <div class="text-sold">Не куплено</div>
+                    <div class="text-sold">
+                    <button class="button-not-sold" data-tooltip="Не куплено"></button>
+                    </div>
                 </td>
             </tr>
             <tr>
-                <td>Печиво</td>
+                <td contenteditable="true">Печиво</td>
                 <td class="centered">
                     <button class="red-button" data-tooltip="Забрати одиницю товару"></button>
                     <div class="table-amount">2</div>
@@ -54,7 +55,7 @@
             </tr>
 
             <tr>
-                <td>Сир</td>
+                <td contenteditable="true">Сир</td>
                 <td class="centered">
                     <div class="cheese-2col">
                         <button class="red-button" data-tooltip="Забрати одиницю товару"></button>
@@ -114,6 +115,8 @@
         <p class="text-for-print">Created by</p>
         <p class="text-for-print">Yelyzaveta Tretiak</p>
     </section>
+
+<script type="text/javascript" src="main.js"></script>
 
 </body>
 </html>
