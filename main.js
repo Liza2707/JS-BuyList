@@ -74,33 +74,46 @@ function addItem(productName) {
     amountCell.appendChild(centeredDiv);
 
 
-    let buttonNotSold = document.createElement('button');
-    buttonNotSold.classList.add('button-text-sold');
-    buttonNotSold.classList.add('text-sold')
-    buttonNotSold.setAttribute('data-tooltip', 'Куплено');
-    buttonNotSold.style.marginRight = "5px"
-    soldCell.appendChild(buttonNotSold);
+    let buttonBought = document.createElement('button');
+    buttonBought.classList.add('button-text-sold');
+    buttonBought.classList.add('text-sold')
+    buttonBought.setAttribute('data-tooltip', 'Куплено');
+    buttonBought.style.marginRight = "5px"
+    soldCell.appendChild(buttonBought);
 
     // кнопка не куплено (відновити товар)
-    let buttonSold = document.createElement('button')
-    buttonSold.addEventListener('click', function () {
-        buttonSold.hidden = true
+    let buttonNotBought = document.createElement('button')
+    buttonNotBought.addEventListener('click', function () {
+        buttonNotBought.hidden = true
+
+        buttonNotBought.classList.toggle('button-text-sold')
+        buttonNotBought.classList.toggle('text-sold')
+
+        buttonBought.classList.toggle('button-text-sold')
+        buttonBought.classList.toggle('text-sold')
+
         redButton.hidden = false
         greenButton.hidden = false
-        buttonNotSold.hidden = false
+        buttonBought.hidden = false
         buttonCross.hidden = false
         productNameCell.style.textDecoration = 'none'
 
     })
 
-    buttonNotSold.addEventListener('click', function () {
+    buttonBought.addEventListener('click', function () {
         redButton.hidden = true
         greenButton.hidden = true
         buttonCross.hidden = true
-        buttonNotSold.hidden = true
-        buttonSold.classList.add('button-not-sold')
-        buttonSold.setAttribute('data-tooltip', 'Не куплено')
-        soldCell.appendChild(buttonSold)
+        buttonBought.hidden = true
+
+        buttonBought.classList.toggle('button-text-sold')
+        buttonBought.classList.toggle('text-sold')
+
+
+        buttonNotBought.classList.toggle('button-not-sold')
+        buttonNotBought.classList.toggle("text-sold")
+        buttonNotBought.setAttribute('data-tooltip', 'Не куплено')
+        soldCell.appendChild(buttonNotBought)
         productNameCell.style.textDecoration = 'line-through'
         productNameCell.setAttribute('contenteditable', false)
     })
