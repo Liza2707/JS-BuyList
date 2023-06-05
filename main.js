@@ -38,6 +38,7 @@ function addItem(productName) {
 
     let redButton = document.createElement('button')
     redButton.classList.add('red-button');
+    redButton.style.marginRight = "5px"
     redButton.setAttribute('data-tooltip', 'Забрати одиницю товару');
     redButton.addEventListener('click', function () {
         let field = this.nextSibling;
@@ -58,6 +59,7 @@ function addItem(productName) {
     let greenButton = document.createElement('button');
     greenButton.classList.add('green-button');
     greenButton.setAttribute('data-tooltip', 'Додати одиницю товару');
+    greenButton.style.marginLeft = "5px"
     greenButton.addEventListener('click', function () {
         let field = this.previousSibling;
         field.innerHTML = parseInt(field.innerHTML) + 1;
@@ -76,6 +78,7 @@ function addItem(productName) {
     buttonNotSold.classList.add('button-text-sold');
     buttonNotSold.classList.add('text-sold')
     buttonNotSold.setAttribute('data-tooltip', 'Куплено');
+    buttonNotSold.style.marginRight = "5px"
     soldCell.appendChild(buttonNotSold);
 
     // кнопка не куплено (відновити товар)
