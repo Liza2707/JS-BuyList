@@ -4,12 +4,14 @@ let button = document.querySelector('#button-to-add');
 
 button.addEventListener('click', function () {
     let productName = input.value;
+    if(productName === "") return;
     addItem(productName);
 });
 
 button.addEventListener('keypress', function (evt) {
     if (evt.key === ' ') {
         let productName = input.value;
+        if(productName === "") return
         addItem(productName);
     }
 })
