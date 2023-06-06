@@ -42,7 +42,7 @@ function addItem(productName) {
     redButton.setAttribute('data-tooltip', 'Забрати одиницю товару');
     redButton.addEventListener('click', function () {
         let field = this.nextSibling;
-        if (field.innerHTML == 1) {
+        if (field.textContent == 1) {
             redButton.disabled=true;
             return;
         }
@@ -62,7 +62,7 @@ function addItem(productName) {
     greenButton.style.marginLeft = "5px"
     greenButton.addEventListener('click', function () {
         let field = this.previousSibling;
-        field.innerHTML = parseInt(field.innerHTML) + 1;
+        field.textContent = parseInt(field.innerHTML) + 1;
         redButton.disabled=false;
     })
 
