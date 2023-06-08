@@ -2,6 +2,9 @@ let input = document.querySelector('#input-text');
 let button = document.querySelector('#button-to-add');
 
 
+let products = [];
+
+
 button.addEventListener('click', function () {
     let productName = input.value;
     if(productName === "") return;
@@ -28,6 +31,8 @@ function addItem(productName) {
     let productNameCell = document.createElement('td');
     productNameCell.setAttribute('contenteditable', 'true')
     let amountCell = document.createElement('td');
+    amountCell.classList.add('centered')
+
     let soldCell = document.createElement('td');
     soldCell.classList.add('right-aligned')
 
@@ -46,7 +51,14 @@ function addItem(productName) {
             redButton.disabled=true;
             return;
         }
-        field.innerHTML = parseInt(field.innerHTML) - 1;
+        field.textContent = parseInt(field.innerHTML) - 1;
+
+        let indexOfProduct = Array.from(table.children).indexOf(newRow) - 1;
+        products[indexOfProduct].amount = field.textContent;
+        console.log("після віднімання")
+        for(let i =0; i < products.length; i++){
+            console.log(products[i])
+        }
     })
 
     let tableAmount = document.createElement('div');
@@ -54,6 +66,15 @@ function addItem(productName) {
 
 
     tableAmount.textContent = 1;
+
+    ////
+    let productInArray = {
+        productName: productName,
+        amount: tableAmount.textContent
+    }
+    products.push(productInArray)
+    /////
+
 
 
     let greenButton = document.createElement('button');
@@ -63,8 +84,17 @@ function addItem(productName) {
     greenButton.addEventListener('click', function () {
         let field = this.previousSibling;
         field.textContent = parseInt(field.innerHTML) + 1;
-        redButton.disabled=false;
-    })
+        redButton.disabled = false;
+
+        let indexOfProduct = Array.from(table.children).indexOf(newRow) - 1;
+        products[indexOfProduct].amount = field.textContent;
+
+        console.log("після додавання:");
+        for (let i = 0; i < products.length; i++) {
+            console.log(products[i]);
+        }
+    });
+
 
 
     centeredDiv.appendChild(redButton);
@@ -124,9 +154,32 @@ function addItem(productName) {
     soldCell.appendChild(buttonCross);
 
     buttonCross.addEventListener('click', function (){
-       // newRow.parentNode.removeChild(newRow)
+        let indexOfProductToDelete = Array.from(table.children).indexOf(newRow) - 1
+        products.splice(indexOfProductToDelete, 1)
+
+        console.log("index: " + indexOfProductToDelete)
+        console.log("після видалення")
+        for (let i = 0; i < products.length; i++) {
+            console.log(products[i]);
+        }
+
+
         newRow.remove()
     })
+
+    // оновлення назви продукту в масиві products при зміні назви продукту у таблиці
+    productNameCell.addEventListener('input', function () {
+        let rowIndex = Array.from(table.children).indexOf(newRow) - 1;
+        if (rowIndex !== -1) {
+            products[rowIndex].productName = productNameCell.textContent;
+        }
+
+        console.log("після зміни назви")
+        for(let  i =0; i < products.length; i++){
+            console.log(products[i])
+        }
+    });
+
 
     newRow.appendChild(productNameCell);
     newRow.appendChild(amountCell);
