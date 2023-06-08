@@ -5,12 +5,20 @@ document.addEventListener("DOMContentLoaded", function() {
     for (let i = 0; i < 3; i++) {
         rows[i].remove();
     }
-});
+
+    let statTag = document.querySelectorAll('.tag')[0];
+    statTag.remove()
+
+    let temp = document.querySelectorAll('.tag')[0]
+    temp.remove()
+
+    });
 
 
 let input = document.querySelector('#input-text');
 let button = document.querySelector('#button-to-add');
 let products = []
+let productStat = []
 
 button.addEventListener('click', function () {
     let productName = input.value;
@@ -73,6 +81,9 @@ function addItem(productName) {
         for(let i =0; i < products.length; i++){
             console.log(products[i])
         }
+
+        let statTag = document.querySelectorAll('.tag')[indexOfProduct]
+        statTag.querySelector('.amount').textContent = field.textContent
     })
 
     let tableAmount = document.createElement('div');
@@ -106,6 +117,10 @@ function addItem(productName) {
         for (let i = 0; i < products.length; i++) {
             console.log(products[i]);
         }
+
+        // Оновити значення статистики в правому прямокутнику
+        let statTag = document.querySelectorAll('.tag')[indexOfProduct];
+        statTag.querySelector('.amount').textContent = field.textContent;
     });
 
 
@@ -176,6 +191,8 @@ function addItem(productName) {
             console.log(products[i]);
         }
 
+        let statTagToDelete = document.querySelectorAll('.tag')[indexOfProductToDelete];
+        statTagToDelete.remove();
 
         newRow.remove()
     })
@@ -191,6 +208,10 @@ function addItem(productName) {
         for(let  i =0; i < products.length; i++){
             console.log(products[i])
         }
+
+        // Оновити значення назви продукту в статистиці правого прямокутника
+        let statTag = document.querySelectorAll('.tag')[rowIndex];
+        statTag.querySelector('.product').innerHTML = `<b>${productNameCell.textContent}</b>`;
     });
 
 
@@ -221,6 +242,13 @@ function addStatistics(index) {
     amountDiv.classList.add('amount');
     amountDiv.innerHTML = `${products[index].amount}`;
 
+    ////////////
+    let prod = { name: `${products[index].productName}`,
+        amount: `${products[index].amount}`
+    }
+    productStat.push(prod)
+    ////////////
+
     amountDiv.style.marginLeft = '5px'
 
     newTag.appendChild(productDiv);
@@ -233,5 +261,8 @@ function addStatistics(index) {
     let amountPage = document.querySelector('.amount-page');
     let tagsLine = amountPage.querySelector('.tags-line');
     tagsLine.appendChild(newTag);
+
+
 }
+
 
