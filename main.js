@@ -10,26 +10,33 @@ document.addEventListener("DOMContentLoaded", function() {
 
 let input = document.querySelector('#input-text');
 let button = document.querySelector('#button-to-add');
-let products = [];
+let products = []
 
 button.addEventListener('click', function () {
     let productName = input.value;
     if(productName === "") return;
+
     addItem(productName);
+    addStatistics(products.length - 1)
 });
 
 button.addEventListener('keypress', function (evt) {
     if (evt.key === ' ') {
         let productName = input.value;
         if(productName === "") return
-        addItem(productName);
+        addItem(productName)
+        addStatistics(products.length - 1)
+
     }
 })
 
 
 addItem('Сік');
-addItem('Мафін');
+addStatistics(0)
+addItem('Мафін')
+addStatistics(1)
 addItem('Вівсянка')
+addStatistics(2)
 
 function addItem(productName) {
 
@@ -81,8 +88,6 @@ function addItem(productName) {
     }
     products.push(productInArray)
     /////
-
-    // adding product to amount-page
 
 
     let greenButton = document.createElement('button');
@@ -197,7 +202,36 @@ function addItem(productName) {
     table.appendChild(newRow);
 
     input.value = '';
+
+
 }
 
+function addStatistics(index) {
+    let newTag = document.createElement('div');
+    newTag.classList.add('tag');
 
+
+    let productDiv = document.createElement('div');
+    productDiv.classList.add('product');
+    productDiv.innerHTML = `<b>${products[index].productName}</b>`;
+
+    productDiv.style.display = 'inline-block'
+
+    let amountDiv = document.createElement('div');
+    amountDiv.classList.add('amount');
+    amountDiv.innerHTML = `${products[index].amount}`;
+
+    amountDiv.style.marginLeft = '5px'
+
+    newTag.appendChild(productDiv);
+    newTag.appendChild(amountDiv);
+
+    newTag.style.marginRight = '5px'
+    newTag.style.marginTop = '10px'
+
+    // Додати новий елемент до правого прямокутника зі статистикою
+    let amountPage = document.querySelector('.amount-page');
+    let tagsLine = amountPage.querySelector('.tags-line');
+    tagsLine.appendChild(newTag);
+}
 
