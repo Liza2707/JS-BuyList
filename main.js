@@ -12,18 +12,22 @@ document.addEventListener("DOMContentLoaded", function() {
     let temp = document.querySelectorAll('.tag')[0]
     temp.remove()
 
+
     });
 
 
 let input = document.querySelector('#input-text');
 let button = document.querySelector('#button-to-add');
 let products = []
-let productStat = []
 
 button.addEventListener('click', function () {
     let productName = input.value;
     if(productName === "") return;
 
+    // перевірка на унікальність назви
+    for(let i =0; i < products.length; i++){
+        if(products[i].productName.toLowerCase() === productName.toLowerCase()) return;
+    }
     addItem(productName);
     addStatistics(products.length - 1)
 });
@@ -32,6 +36,12 @@ button.addEventListener('keypress', function (evt) {
     if (evt.key === ' ') {
         let productName = input.value;
         if(productName === "") return
+
+        // перевірка на унікальність назви
+        for(let i =0; i < products.length; i++){
+            if(products[i].productName.toLowerCase() === productName.toLowerCase()) return;
+        }
+
         addItem(productName)
         addStatistics(products.length - 1)
 
@@ -242,12 +252,6 @@ function addStatistics(index) {
     amountDiv.classList.add('amount');
     amountDiv.innerHTML = `${products[index].amount}`;
 
-    ////////////
-    let prod = { name: `${products[index].productName}`,
-        amount: `${products[index].amount}`
-    }
-    productStat.push(prod)
-    ////////////
 
     amountDiv.style.marginLeft = '5px'
 
