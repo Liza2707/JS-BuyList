@@ -1,9 +1,16 @@
+document.addEventListener("DOMContentLoaded", function() {
+    let table = document.querySelector(".table");
+    let rows = table.querySelectorAll("tr");
+
+    for (let i = 0; i < 3; i++) {
+        rows[i].remove();
+    }
+});
+
+
 let input = document.querySelector('#input-text');
 let button = document.querySelector('#button-to-add');
-
-
 let products = [];
-
 
 button.addEventListener('click', function () {
     let productName = input.value;
@@ -75,6 +82,7 @@ function addItem(productName) {
     products.push(productInArray)
     /////
 
+    // adding product to amount-page
 
 
     let greenButton = document.createElement('button');
