@@ -178,6 +178,7 @@ function addItem(productName) {
         buttonBought.hidden = false
         buttonCross.hidden = false
         productNameCell.style.textDecoration = 'none'
+        productNameCell.setAttribute('contenteditable', true)
 
         // new
         // забрати з колонки КУПЛЕНО та додати в колонку ЗАЛИШИЛОСЯ
@@ -233,26 +234,45 @@ function addItem(productName) {
     soldCell.appendChild(buttonCross);
 
     buttonCross.addEventListener('click', function (){
+        // індекс товару в таблиці
         let indexOfProductToDelete = Array.from(table.children).indexOf(newRow) - 1
+
+        // видалити продукт зі статистичної таблиці
+        for(let i =0; i < document.querySelectorAll('.tag').length; i++){
+            if(products[indexOfProductToDelete].productName === document.querySelectorAll('.tag')[i].querySelector('.product').textContent){
+                let tagToDelete = document.querySelectorAll('.tag')[i]
+                tagToDelete.remove()
+                break
+            }
+        }
+
         products.splice(indexOfProductToDelete, 1)
-
-        let statTagToDelete = document.querySelectorAll('.tag')[indexOfProductToDelete];
-        statTagToDelete.remove();
-
         newRow.remove()
     })
 
     // оновлення назви продукту в масиві products при зміні назви продукту у таблиці
     productNameCell.addEventListener('input', function () {
         let rowIndex = Array.from(table.children).indexOf(newRow) - 1;
+        // змінити назву продукту в масиві
         if (rowIndex !== -1) {
             products[rowIndex].productName = productNameCell.textContent;
         }
 
+        console.log("in input")
 
         // Оновити значення назви продукту в статистиці правого прямокутника
+
+        for(let i =0; i < document.querySelectorAll('.tag').length; i++){
+            if(document.querySelectorAll('.tag')[i].querySelector('.product').textContent === products[rowIndex].productName.slice(0, -1) || document.querySelectorAll('.tag')[i].querySelector('.product').textContent.slice(0, -1) === products[rowIndex].productName){
+                let statTag = document.querySelectorAll('.tag')[i]
+                statTag.querySelector('.product').innerHTML = `<b>${productNameCell.textContent}</b>`
+            }
+        }
+
+/**
         let statTag = document.querySelectorAll('.tag')[rowIndex];
         statTag.querySelector('.product').innerHTML = `<b>${productNameCell.textContent}</b>`;
+ **/
     });
 
 
@@ -283,7 +303,7 @@ function addStatistics(index) {
     amountDiv.classList.add('amount');
     amountDiv.innerHTML = `${products[index].amount}`;
 
- //   amountDiv.style.marginLeft = '5px'
+    amountDiv.style.marginLeft = '5px'
 
     newTag.appendChild(productDiv);
     newTag.appendChild(amountDiv);
