@@ -24,11 +24,18 @@ let products = []
 
 button.addEventListener('click', function () {
     let productName = input.value;
-    if(productName === "") return;
+    if(productName === ""){
+        window.alert("Будь ласка, введіть назву товару ще раз, оскільки назва не може складатися з порожнього рядка.")
+        return
+    }
 
     // перевірка на унікальність назви
     for(let i =0; i < products.length; i++){
-        if(products[i].productName.toLowerCase() === productName.toLowerCase()) return;
+        if(products[i].productName.toLowerCase() === productName.toLowerCase()){
+            window.alert("Будь ласка, оберіть іншу назву продукту, оскільки дана назва вже присутня в списку.")
+            input.value = ""
+            return
+        }
     }
     addItem(productName);
     addStatistics(products.length - 1)
@@ -37,11 +44,18 @@ button.addEventListener('click', function () {
 button.addEventListener('keypress', function (evt) {
     if (evt.key === ' ') {
         let productName = input.value;
-        if(productName === "") return
+        if(productName === "") {
+            window.alert("Будь ласка, введіть назву товару ще раз, оскільки назва не може складатися з порожнього рядка.")
+            return
+        }
 
         // перевірка на унікальність назви
         for(let i =0; i < products.length; i++){
-            if(products[i].productName.toLowerCase() === productName.toLowerCase()) return;
+            if(products[i].productName.toLowerCase() === productName.toLowerCase()) {
+                window.alert("Будь ласка, оберіть іншу назву продукту, оскільки дана назва вже присутня в списку.")
+                input.value = ""
+                return
+            }
         }
 
         addItem(productName)
@@ -269,10 +283,6 @@ function addItem(productName) {
             }
         }
 
-/**
-        let statTag = document.querySelectorAll('.tag')[rowIndex];
-        statTag.querySelector('.product').innerHTML = `<b>${productNameCell.textContent}</b>`;
- **/
     });
 
 
