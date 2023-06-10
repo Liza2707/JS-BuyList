@@ -1,28 +1,76 @@
+document.addEventListener("DOMContentLoaded", function() {
+    let table = document.querySelector(".table");
+    let rows = table.querySelectorAll("tr");
+
+    for (let i = 0; i < 3; i++) {
+        rows[i].remove();
+    }
+
+    let statTag = document.querySelectorAll('.tag')[0];
+    statTag.remove()
+
+    let temp = document.querySelectorAll('.tag')[0]
+    temp.remove()
+
+    temp = document.querySelectorAll('.tag')[products.length]
+    temp.remove()
+
+    });
+
+
 let input = document.querySelector('#input-text');
 let button = document.querySelector('#button-to-add');
-
-
-let products = [];
-
+let products = []
 
 button.addEventListener('click', function () {
     let productName = input.value;
-    if(productName === "") return;
+    if(productName === ""){
+        window.alert("Будь ласка, введіть назву товару ще раз, оскільки назва не може складатися з порожнього рядка.")
+        return
+    }
+
+    // перевірка на унікальність назви
+    for(let i =0; i < products.length; i++){
+        if(products[i].productName.toLowerCase() === productName.toLowerCase()){
+            window.alert("Будь ласка, оберіть іншу назву продукту, оскільки дана назва вже присутня в списку.")
+            input.value = ""
+            return
+        }
+    }
     addItem(productName);
+    addStatistics(products.length - 1)
 });
 
 button.addEventListener('keypress', function (evt) {
     if (evt.key === ' ') {
         let productName = input.value;
-        if(productName === "") return
-        addItem(productName);
+        if(productName === "") {
+            window.alert("Будь ласка, введіть назву товару ще раз, оскільки назва не може складатися з порожнього рядка.")
+            return
+        }
+
+        // перевірка на унікальність назви
+        for(let i =0; i < products.length; i++){
+            if(products[i].productName.toLowerCase() === productName.toLowerCase()) {
+                window.alert("Будь ласка, оберіть іншу назву продукту, оскільки дана назва вже присутня в списку.")
+                input.value = ""
+                return
+            }
+        }
+
+        addItem(productName)
+        addStatistics(products.length - 1)
+
     }
 })
 
 
 addItem('Сік');
-addItem('Мафін');
+addStatistics(0)
+addItem('Мафін')
+addStatistics(1)
 addItem('Вівсянка')
+addStatistics(2)
 
 function addItem(productName) {
 
@@ -43,6 +91,7 @@ function addItem(productName) {
 
     let redButton = document.createElement('button')
     redButton.classList.add('red-button');
+    redButton.style.backgroundColor = 'grey'
     redButton.style.marginRight = "5px"
     redButton.setAttribute('data-tooltip', 'Забрати одиницю товару');
     redButton.addEventListener('click', function () {
@@ -53,11 +102,21 @@ function addItem(productName) {
         }
         field.textContent = parseInt(field.innerHTML) - 1;
 
+        if(field.textContent == 1) redButton.style.backgroundColor = 'grey'
+
         let indexOfProduct = Array.from(table.children).indexOf(newRow) - 1;
         products[indexOfProduct].amount = field.textContent;
         console.log("після віднімання")
         for(let i =0; i < products.length; i++){
             console.log(products[i])
+        }
+
+        for(let i =0; i < document.querySelectorAll('.tag').length; i++){
+            if(document.querySelectorAll('.tag')[i].querySelector('.product').textContent === products[indexOfProduct].productName){
+                let statTag = document.querySelectorAll('.tag')[i]
+                statTag.querySelector('.amount').textContent = field.textContent
+                break
+            }
         }
     })
 
@@ -67,13 +126,12 @@ function addItem(productName) {
 
     tableAmount.textContent = 1;
 
-    ////
+
     let productInArray = {
         productName: productName,
         amount: tableAmount.textContent
     }
     products.push(productInArray)
-    /////
 
 
 
@@ -85,13 +143,20 @@ function addItem(productName) {
         let field = this.previousSibling;
         field.textContent = parseInt(field.innerHTML) + 1;
         redButton.disabled = false;
+        redButton.style.backgroundColor = 'red'
 
         let indexOfProduct = Array.from(table.children).indexOf(newRow) - 1;
         products[indexOfProduct].amount = field.textContent;
 
-        console.log("після додавання:");
-        for (let i = 0; i < products.length; i++) {
-            console.log(products[i]);
+
+        // Оновити значення статистики в правому прямокутнику
+
+        for(let i =0; i < document.querySelectorAll('.tag').length; i++){
+            if(document.querySelectorAll('.tag')[i].querySelector('.product').textContent === products[indexOfProduct].productName){
+                let statTag = document.querySelectorAll('.tag')[i]
+                statTag.querySelector('.amount').textContent = field.textContent
+                break
+            }
         }
     });
 
@@ -127,7 +192,20 @@ function addItem(productName) {
         buttonBought.hidden = false
         buttonCross.hidden = false
         productNameCell.style.textDecoration = 'none'
+        productNameCell.setAttribute('contenteditable', true)
 
+        // new
+        // забрати з колонки КУПЛЕНО та додати в колонку ЗАЛИШИЛОСЯ
+        let index = Array.from(table.children).indexOf(newRow) - 1 // індекс товару в таблиці
+
+       for(let i =0; i < document.querySelectorAll('.tag').length; i++){
+           if(document.querySelectorAll('.tag')[i].querySelector('.product').textContent === products[index].productName){
+               let temp = document.querySelectorAll('.tag')[i]
+               temp.remove()
+               break
+           }
+       }
+         addStatistics(index)
     })
 
     buttonBought.addEventListener('click', function () {
@@ -146,6 +224,22 @@ function addItem(productName) {
         soldCell.appendChild(buttonNotBought)
         productNameCell.style.textDecoration = 'line-through'
         productNameCell.setAttribute('contenteditable', false)
+
+        // new
+        let index = Array.from(table.children).indexOf(newRow) - 1
+
+        // remove from column "залишилося"
+        for(let i =0; i < document.querySelectorAll('.tag').length; i++){
+            if(document.querySelectorAll('.tag')[i].querySelector('.product').textContent === products[index].productName){
+                let temp = document.querySelectorAll('.tag')[i]
+                temp.remove()
+                break
+            }
+        }
+
+        // додати в колонку КУПЛЕНО
+        addBought(index)
+
     })
 
     let buttonCross = document.createElement('button');
@@ -154,30 +248,41 @@ function addItem(productName) {
     soldCell.appendChild(buttonCross);
 
     buttonCross.addEventListener('click', function (){
+        // індекс товару в таблиці
         let indexOfProductToDelete = Array.from(table.children).indexOf(newRow) - 1
-        products.splice(indexOfProductToDelete, 1)
 
-        console.log("index: " + indexOfProductToDelete)
-        console.log("після видалення")
-        for (let i = 0; i < products.length; i++) {
-            console.log(products[i]);
+        // видалити продукт зі статистичної таблиці
+        for(let i =0; i < document.querySelectorAll('.tag').length; i++){
+            if(products[indexOfProductToDelete].productName === document.querySelectorAll('.tag')[i].querySelector('.product').textContent){
+                let tagToDelete = document.querySelectorAll('.tag')[i]
+                tagToDelete.remove()
+                break
+            }
         }
 
-
+        products.splice(indexOfProductToDelete, 1)
         newRow.remove()
     })
 
     // оновлення назви продукту в масиві products при зміні назви продукту у таблиці
     productNameCell.addEventListener('input', function () {
         let rowIndex = Array.from(table.children).indexOf(newRow) - 1;
+        // змінити назву продукту в масиві
         if (rowIndex !== -1) {
             products[rowIndex].productName = productNameCell.textContent;
         }
 
-        console.log("після зміни назви")
-        for(let  i =0; i < products.length; i++){
-            console.log(products[i])
+        console.log("in input")
+
+        // Оновити значення назви продукту в статистиці правого прямокутника
+
+        for(let i =0; i < document.querySelectorAll('.tag').length; i++){
+            if(document.querySelectorAll('.tag')[i].querySelector('.product').textContent === products[rowIndex].productName.slice(0, -1) || document.querySelectorAll('.tag')[i].querySelector('.product').textContent.slice(0, -1) === products[rowIndex].productName){
+                let statTag = document.querySelectorAll('.tag')[i]
+                statTag.querySelector('.product').innerHTML = `<b>${productNameCell.textContent}</b>`
+            }
         }
+
     });
 
 
@@ -189,7 +294,70 @@ function addItem(productName) {
     table.appendChild(newRow);
 
     input.value = '';
+
+
 }
 
+function addStatistics(index) {
+    let newTag = document.createElement('div');
+    newTag.classList.add('tag');
+
+
+    let productDiv = document.createElement('div');
+    productDiv.classList.add('product');
+    productDiv.innerHTML = `<b>${products[index].productName}</b>`;
+
+    productDiv.style.display = 'inline-block'
+
+    let amountDiv = document.createElement('div');
+    amountDiv.classList.add('amount');
+    amountDiv.innerHTML = `${products[index].amount}`;
+
+    amountDiv.style.marginLeft = '5px'
+
+    newTag.appendChild(productDiv);
+    newTag.appendChild(amountDiv);
+
+    newTag.style.marginRight = '5px'
+    newTag.style.marginTop = '10px'
+
+    // Додати новий елемент до правого прямокутника зі статистикою
+    let amountPage = document.querySelector('.amount-page');
+    let tagsLine = amountPage.querySelector('.tags-line');
+    tagsLine.appendChild(newTag);
+
+
+}
+
+function addBought(index) {
+
+    let newTag = document.createElement('div');
+    newTag.classList.add('tag');
+
+
+    let productDiv = document.createElement('div');
+    productDiv.classList.add('product');
+    productDiv.innerHTML = `<del><b>${products[index].productName}</b></del>`;
+
+    productDiv.style.display = 'inline-block'
+
+    let amountDiv = document.createElement('div');
+    amountDiv.classList.add('amount');
+    amountDiv.innerHTML = `<del>${products[index].amount}</del>`;
+
+
+    amountDiv.style.marginLeft = '5px'
+
+    newTag.appendChild(productDiv);
+    newTag.appendChild(amountDiv);
+
+    newTag.style.marginRight = '5px'
+    newTag.style.marginTop = '10px'
+
+    // Додати новий елемент до правого прямокутника зі статистикою
+    let amountPage = document.querySelector('.amount-page');
+    let tagsLine = amountPage.querySelector('#tags-bought');
+    tagsLine.appendChild(newTag);
+}
 
 
